@@ -18,18 +18,19 @@ usersCtrl.createUser = async (req, res) => {
   } catch (error) {
     console.log(error);
     if(error.code === 11000){
-      return res.status(201).json({error: "usuario existente"})
+      return res.status(201).json({error: "Existent user"})
     };
     res.status(404).json({
       message: 'Failure'
     })
   }
 }
+//CHECKED
 
 /*user, password*/
-usersCtrl.getUserByUser = async (req, res) => {
+usersCtrl.getUserByEmail = async (req, res) => {
   try {
-    const user = await User.findOne({user: req.body.user}).select('-createdAt -updatedAt');
+    const user = await User.findOne({userEmail: req.body.userEmail}).select('-createdAt -updatedAt');
     if(user !== null){
       const result = await bcrypt.compare(req.body.password, user.password);
       if(result){
@@ -41,6 +42,10 @@ usersCtrl.getUserByUser = async (req, res) => {
           message: 'Incorrect data'
         })
       }
+    }else{
+      res.status(202).json({
+        message: 'Incorrect data'
+      })
     }
   } catch (error) {
     console.log(error);
@@ -49,6 +54,7 @@ usersCtrl.getUserByUser = async (req, res) => {
     })
   }
 }
+//CHECKED
 
 usersCtrl.getUserByToken = async (req, res) => {
   try {
@@ -61,5 +67,6 @@ usersCtrl.getUserByToken = async (req, res) => {
     })
   }
 }
+//CHECKED
 
 module.exports = usersCtrl;
