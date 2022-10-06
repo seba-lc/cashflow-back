@@ -1,8 +1,8 @@
 const { check, validationResult } = require("express-validator");
 
 exports.registerValidations = [
-  check('name').exists().not().isEmpty().isLength({min: 2, max:35}),
-  check('userEmail').exists().isEmail().isLength({min: 8, max: 50}),
+  check('name').exists().not().isEmpty().isLength({min: 3, max: 30}),
+  check('email').exists().isEmail().isLength({min: 8, max: 50}),
   check('password').exists().not().isEmpty().isLength({min: 8, max: 30}),
   (req, res, next) => {
     checkValidations(req, res, next)
@@ -10,7 +10,7 @@ exports.registerValidations = [
 ]
 
 exports.loginValidations = [
-  check('userEmail').exists().isEmail().isLength({min: 8, max: 50}),
+  check('email').exists().isEmail().isLength({min: 8, max: 50}),
   check('password').exists().not().isEmpty().isLength({min: 8, max: 30}),
   (req, res, next) => {
     checkValidations(req, res, next)

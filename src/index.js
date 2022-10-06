@@ -27,7 +27,3 @@ app.use(express.static(path.join(__dirname, './../public')));
 
 //routes
 app.use('/api/incomesproject/users', userRouter);
-
-
-//QUEDA DE TAREA: HACER LAS VALIDACIONES CON EXPRESS VALIDATOR, QUE EL USUARIO SEA UN EMAIL, FALTA LA RUTA DE LOS JOURNEYS
-

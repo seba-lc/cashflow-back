@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 
 const usersCtrl = {};
 
-/*name, user, password*/
+/*name, email, password*/
 usersCtrl.createUser = async (req, res) => {
   try {
     const userInfo = req.body;
@@ -30,12 +30,12 @@ usersCtrl.createUser = async (req, res) => {
 /*user, password*/
 usersCtrl.getUserByEmail = async (req, res) => {
   try {
-    const user = await User.findOne({userEmail: req.body.userEmail}).select('-createdAt -updatedAt');
+    const user = await User.findOne({email: req.body.email}).select('-createdAt -updatedAt');
     if(user !== null){
       const result = await bcrypt.compare(req.body.password, user.password);
       if(result){
         const token = jwt.sign({id: user._id}, process.env.S_WORD, {expiresIn: process.env.EXPIRATION_TIME})
-        res.status(200).json({id: token, name: user.name, user: user.user});
+        res.status(200).json({id: token, name: user.name, email: user.email});
         return;
       }else{
         res.status(201).json({

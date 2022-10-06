@@ -17,7 +17,7 @@ exports.checkToken = (req, res, next) => {
   } catch (error) {
     console.log(error.message);
     if(error.message === 'jwt expired'){
-      res.status(400).json({ message: 'Token expired'});
+      res.status(201).json({ message: 'Token expired'});
     }
     res.status(500).json({ message: 'Failure in the Server' })
   }
