@@ -17,6 +17,13 @@ exports.loginValidations = [
   }
 ]
 
+exports.journeyValidations = [
+  check('user').exists().isEmail().isLength({min: 8, max: 50}),
+  (req, res, next) => {
+    checkValidations(req, res, next)
+  }
+]
+
 const checkValidations = (req, res, next) => {
   try {
     const errors = validationResult(req);

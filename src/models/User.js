@@ -19,10 +19,26 @@ const UserSchema = new Schema({
   },
   password: {
     type: String,
-    required:true,
+    required: true,
     trim: true,
     minlength: 8,
     maxlength: 80
+  },
+  sex: {
+    type: String,
+    default: 'Unknow'
+  },
+  location: {
+    type: String,
+    default: 'Unknow'
+  },
+  monthGoal: {
+    type: String,
+    default: 'Unknow'
+  },
+  fristDayMonth: {
+    type: String,
+    default: 'Unknow'
   }
 }, {
   versionKey: false,

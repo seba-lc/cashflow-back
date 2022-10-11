@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const { checkToken } = require('../middlewares/auth');
 const usersCtrl = require('./../controllers/user.controllers');
-const { registerValidations, loginValidations } = require('./../middlewares/checkUser');
+const { registerValidations, loginValidations } = require('../middlewares/checkDoc');
 
 const router = Router();
 
